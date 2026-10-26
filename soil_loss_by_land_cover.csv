@@ -1,0 +1,4 @@
+"land_cover","area_ha","median_C","median_A","share_on_slopes_over_40pct","share_of_total_soil_loss_pct"
+"Tree cover",10762,0.0026,4.9,39.8,42.8
+"Grassland",1270,0.031,166.1,60.4,48.7
+"Cropland",1360,0.081,4.4,1.5,8.4

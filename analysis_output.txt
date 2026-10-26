@@ -1,0 +1,148 @@
+
+==============================================================================
+1. DATA
+==============================================================================
+Watershed: HydroBASINS 5090216470, 142.4 km2 (catalogue area 141.5 km2)
+Soil-bearing area analysed (built-up and water excluded): 13395 ha
+
+Land cover (ESA WorldCover 2021):
+    land_cover area_ha share_pct
+    Tree cover   10762      75.6
+     Grassland    1270       8.9
+      Cropland    1360       9.6
+ Bare / sparse       4       0.0
+      Built-up     840       5.9
+
+Cross-check: Earth Engine area table 13259 ha vs raster 13395 ha (difference -1.0%)
+
+==============================================================================
+2. RUSLE FACTORS
+==============================================================================
+    factor      min      p05   median     mean      p95      max
+         R 1.69e+04 1.79e+04 2.11e+04 2.31e+04 2.92e+04 3.30e+04
+         K 1.35e-02 1.42e-02 1.54e-02 1.53e-02 1.61e-02 1.66e-02
+        LS 2.97e-04 2.33e-01 7.22e+00 1.19e+01 3.59e+01 6.30e+01
+         C 5.37e-09 3.56e-05 5.43e-03 3.92e-02 2.04e-01 1.00e+00
+         P 5.00e-01 6.00e-01 1.00e+00 9.57e-01 1.00e+00 1.00e+00
+ slope_pct 1.12e-02 1.63e+00 2.25e+01 3.52e+01 1.02e+02 4.18e+02
+         A 3.31e-05 1.30e-01 5.73e+00 9.26e+01 4.80e+02 9.04e+03
+
+Implied mean annual rainfall (CHIRPS 2014-2023): 2150 to 2961 mm
+
+==============================================================================
+3. SOIL LOSS AND EROSION CLASSES
+==============================================================================
+Median soil loss: 5.7 t/ha/yr | area-weighted mean: 92.6 t/ha/yr
+Estimated gross soil loss for the watershed: 1.24 million t/yr
+
+Area by erosion hazard class (t/ha/yr):
+              label area_ha share_pct
+  Very light (< 15)    8889      66.4
+      Light (15-60)    2131      15.9
+  Moderate (60-180)    1055       7.9
+    Heavy (180-480)     651       4.9
+ Very heavy (> 480)     670       5.0
+
+Concentration of soil loss:
+ area_share_pct soil_loss_share_pct
+              1                27.8
+              5                67.5
+             10                83.4
+             20                93.4
+
+==============================================================================
+4. SOIL LOSS BY LAND COVER AND SLOPE
+==============================================================================
+Summary by land cover:
+ land_cover area_ha median_C median_A share_on_slopes_over_40pct
+ Tree cover   10762   0.0026      4.9                       39.8
+  Grassland    1270   0.0310    166.1                       60.4
+   Cropland    1360   0.0810      4.4                        1.5
+ share_of_total_soil_loss_pct
+                         42.8
+                         48.7
+                          8.4
+
+Median soil loss (t/ha/yr) by land cover x slope class:
+ land_cover slope_class median_A area_ha
+ Tree cover        0-8%      4.1    2597
+ Tree cover       8-15%      6.6    1562
+ Tree cover      15-25%      4.2    1125
+ Tree cover      25-40%      2.5    1198
+ Tree cover       > 40%      6.2    4280
+  Grassland        0-8%      7.6     170
+  Grassland       8-15%     41.4      95
+  Grassland      15-25%     85.0      99
+  Grassland      25-40%    126.0     140
+  Grassland       > 40%    330.3     766
+   Cropland        0-8%      3.6    1166
+   Cropland       8-15%     60.8      81
+   Cropland      15-25%    369.8      53
+   Cropland      25-40%    761.4      40
+   Cropland       > 40%   1362.6      20
+
+No significance tests are reported: neighbouring 30 m pixels are spatially
+autocorrelated, so pixel-level p-values would be misleadingly small.
+
+Priority area (cropland or grassland, slope > 25%, soil loss >= 180 t/ha/yr): 598 ha
+  = 4.5% of the analysed area, producing 48.2% of the estimated soil loss
+Grassland  Cropland 
+      546        52 
+
+Slopes > 100% (beyond the range RUSLE was developed for): 5.4% of area, 17.5% of soil loss
+
+==============================================================================
+4b. SENSITIVITY: LIKELY 2023 FIRE SCAR
+==============================================================================
+Patch with low 2023 cover (C >= 0.1) near the caldera rim: 270 ha (2.0% of area)
+  median C 0.25 | median soil loss 1155 t/ha/yr | 29.8% of the estimated soil loss
+  land cover before the fire (WorldCover 2021, ha):
+Tree cover  Grassland   Cropland 
+       113         85         73 
+
+Results with and without the patch:
+                                           measure all_land without_fire_patch
+                        Median soil loss (t/ha/yr)      5.7                5.4
+ Share of soil loss from the worst 10% of land (%)     83.4               80.5
+                  Grassland share of soil loss (%)     48.7               52.5
+                                Priority area (ha)    598.0              480.0
+              Priority area share of soil loss (%)     48.2               45.8
+
+==============================================================================
+5. FIGURES
+==============================================================================
+
+==============================================================================
+SESSION INFO
+==============================================================================
+R version 4.3.3 (2024-02-29)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: Ubuntu 24.04.5 LTS
+
+Matrix products: default
+BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.12.0 
+LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.12.0
+
+locale:
+[1] C
+
+time zone: Asia/Bangkok
+tzcode source: system (glibc)
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] patchwork_1.2.0 ggplot2_3.4.4   sf_1.0-15       terra_1.7-65   
+
+loaded via a namespace (and not attached):
+ [1] vctrs_0.6.5        cli_3.6.2          rlang_1.1.3        DBI_1.2.2         
+ [5] KernSmooth_2.23-22 generics_0.1.3     textshaping_0.3.7  labeling_0.4.3    
+ [9] glue_1.7.0         colorspace_2.1-0   e1071_1.7-14       ragg_1.2.7        
+[13] scales_1.3.0       fansi_1.0.5        grid_4.3.3         munsell_0.5.0     
+[17] classInt_0.4-10    tibble_3.2.1       lifecycle_1.0.4    compiler_4.3.3    
+[21] dplyr_1.1.4        codetools_0.2-19   Rcpp_1.0.12        pkgconfig_2.0.3   
+[25] farver_2.1.1       systemfonts_1.0.5  R6_2.5.1           class_7.3-22      
+[29] tidyselect_1.2.0   utf8_1.2.4         pillar_1.9.0       magrittr_2.0.3    
+[33] withr_2.5.0        tools_4.3.3        proxy_0.4-27       gtable_0.3.4      
+[37] units_0.8-5       

@@ -1,0 +1,16 @@
+"land_cover","slope_class","median_A","area_ha"
+"Tree cover","0-8%",4.1,2597
+"Tree cover","8-15%",6.6,1562
+"Tree cover","15-25%",4.2,1125
+"Tree cover","25-40%",2.5,1198
+"Tree cover","> 40%",6.2,4280
+"Grassland","0-8%",7.6,170
+"Grassland","8-15%",41.4,95
+"Grassland","15-25%",85,99
+"Grassland","25-40%",126,140
+"Grassland","> 40%",330.3,766
+"Cropland","0-8%",3.6,1166
+"Cropland","8-15%",60.8,81
+"Cropland","15-25%",369.8,53
+"Cropland","25-40%",761.4,40
+"Cropland","> 40%",1362.6,20
